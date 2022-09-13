@@ -1,1 +1,38 @@
-# Created by newuser for 5.8.1
+SECTION_DIR=${HOME}/.zsh.d/sections
+
+function load_section() {
+  source ${SECTION_DIR}/$1.zsh
+}
+
+# Load base sections
+load_section config
+load_section colours
+load_section logging
+load_section terminal
+load_section functions
+load_section paths
+load_section utils
+load_section spaceship
+load_section antigen
+
+# This has to be *after* we load antigen, otherwise it doesn't work
+autoload -U +X bashcompinit && bashcompinit
+autoload -U +X compinit && compinit -i
+
+load_section vim
+load_section asdf
+# load_section pyenv
+# load_section brew
+# load_section kubernetes
+# load_section terraform
+# load_section chef
+# load_section aws
+# load_section bitwarden
+# load_section consul
+
+if [[ "$(uname -s)" = "Darwin" ]]; then
+  unset LSCOLORS
+fi
+
+setopt nosharehistory
+setopt incappendhistorytime
