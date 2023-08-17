@@ -1,3 +1,56 @@
+function _ensure_arg() {
+  local ARG="$1"
+  local MSG="$2"
+
+  if [[ -z ${(P)ARG} ]]; then
+    log_error "${MSG}"
+    return 1
+  else
+    return 0
+  fi
+}
+
+function _convert_timestamp() {
+  local DATE="$1"
+  local FMT="$2"
+
+  if [[ ${DATE} =~ ^[0-9]+$ ]]; then
+    echo ${DATE}
+    return 0
+  fi
+
+  if [[ -z ${FMT} ]]; then
+    FMT="%FT%TZ"
+  fi
+
+  date -j -u -f "${FMT}" "${DATE}" "+%s"
+}
+
+function _duration() {
+  # Based on from https://github.com/spaceship-prompt/spaceship-prompt/blob/master/lib/utils.zsh#L115.
+  local FIRST_TIME=$(_convert_timestamp "$1")
+
+  if [[ -z $2 ]]; then
+    local SECOND_TIME=$(date "+%s")
+  else
+    local SECOND_TIME=$(_convert_timestamp "$2")
+  fi
+
+  local duration=$(( ${SECOND_TIME} - ${FIRST_TIME} ))
+
+  [[ -z "$precision" ]] && precision=1
+
+  integer D=$((duration/60/60/24))
+  integer H=$((duration/60/60%24))
+  integer M=$((duration/60%60))
+  local S=$((duration%60))
+
+  [[ $D > 0 ]] && printf '%dd ' $D
+  [[ $H > 0 ]] && printf '%dh ' $H
+  [[ $M > 0 ]] && printf '%dm ' $M
+  printf %.${precision}f%s $S s
+}
+
 function _ensure_directory_exists() {
   TEST_DIR="$1"
 

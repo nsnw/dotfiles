@@ -49,7 +49,7 @@ _bp_status() {
 
 _bp_log() {
   _bp_cd_dir
-  git log HEAD~1
+  git log | head -n3
   _bp_restore_cur_dir
 }
 
@@ -65,7 +65,10 @@ _bp_notebook_edit() {
 }
 
 _bp_notebooks_list() {
-  find ${BP_NOTEBOOK_DIR}
+  _bp_cd_dir
+  cd notebooks
+  find . -name '*.md' | cut -c3- | sed -e 's/\.md$//'
+  _bp_restore_cur_dir
 }
 
 bp() {
@@ -88,7 +91,7 @@ bp() {
       _bp_log
       ;;
     edit|ed|e)
-      _bp_notebook_edit $2
+      _bp_notebook_edit $2.md
       ;;
     list|li)
       _bp_notebooks_list

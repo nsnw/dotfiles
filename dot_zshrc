@@ -21,6 +21,17 @@ autoload -U +X compinit && compinit -i
 
 load_section vim
 load_section asdf
+load_section backpack
+load_section ssh
+load_section work/pagerduty-misc
+load_section work/github
+load_section work/aws
+load_section work/1password
+load_section work/terraform
+load_section work/chef
+load_section work/otp
+load_section work/buildkite
+
 # load_section pyenv
 # load_section brew
 # load_section kubernetes

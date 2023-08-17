@@ -14,7 +14,7 @@ antigen bundle git
 antigen bundle command-not-found
 antigen bundle zsh-users/zsh-completions
 antigen bundle zsh-users/zsh-autosuggestions
-# antigen bundle ssh-agent
+antigen bundle ssh-agent
 # antigen bundle wfxr/forgit
 antigen bundle Aloxaf/fzf-tab
 # antigen bundle aws

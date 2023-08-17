@@ -29,25 +29,25 @@ function _log_prefix() {
 
 function log_debug() {
   MSG="$1"
-  echo -e "$(_log_prefix debug)${MSG}"
+  echo -e "$(_log_prefix debug)${MSG}" >&2
 }
 
 function log_info() {
   MSG="$1"
-  echo -e "$(_log_prefix info)${MSG}"
+  echo -e "$(_log_prefix info)${MSG}" >&2
 }
 
 function log_notice() {
   MSG="$1"
-  echo -e "$(_log_prefix notice)${MSG}"
+  echo -e "$(_log_prefix notice)${MSG}" >&2
 }
 
 function log_warning() {
   MSG="$1"
-  echo -e "$(_log_prefix warning)${MSG}"
+  echo -e "$(_log_prefix warning)${MSG}" >&2
 }
 
 function log_error() {
   MSG="$1"
-  echo -e "$(_log_prefix error)${MSG}"
+  echo -e "$(_log_prefix error)${MSG}" >&2
 }
