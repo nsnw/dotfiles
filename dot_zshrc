@@ -23,23 +23,13 @@ load_section vim
 load_section asdf
 load_section backpack
 load_section ssh
-load_section work/pagerduty-misc
-load_section work/github
-load_section work/aws
-load_section work/1password
-load_section work/terraform
-load_section work/chef
-load_section work/otp
-load_section work/buildkite
 
-# load_section pyenv
-# load_section brew
-# load_section kubernetes
-# load_section terraform
-# load_section chef
-# load_section aws
-# load_section bitwarden
-# load_section consul
+if [[ -d ${SECTION_DIR}/extra ]]; then
+  for SECTION_PATH in ${SECTION_DIR}/extra/*.zsh; do
+    SECTION="$(basename ${SECTION_PATH} .zsh)"
+    load_section extra/${SECTION}
+  done
+fi
 
 if [[ "$(uname -s)" = "Darwin" ]]; then
   unset LSCOLORS
