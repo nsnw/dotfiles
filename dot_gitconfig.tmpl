@@ -88,7 +88,7 @@
   # files
   ls = ls-files
   lsf = "!git ls-files | grep -i"
-	dag = log --graph --format='format:%C(yellow)%h%C(reset) %C(blue)\"%an\" <%ae>%C(reset) %C(magenta)%ar%C(reset)%C(auto)%d%C(reset)%n%s' --date-order
+  dag = log --graph --format='format:%C(yellow)%h%C(reset) %C(blue)\"%an\" <%ae>%C(reset) %C(magenta)%ar%C(reset)%C(auto)%d%C(reset)%n%s' --date-order
 [format]
   pretty = format:%C(blue)%ad%Creset %C(yellow)%h%C(green)%d%Creset %C(blue)%s %C(magenta) [%an]%Creset
 [mergetool]
@@ -111,8 +111,8 @@
 [core]
   autocrlf = false
   editor = vim
-  excludesfile = ~/.yadr/git/gitignore
-	pager = less -FMRiX
+  excludesfile = ~/.gitignore-global
+  pager = less -FMRiX
 [advice]
   statusHints = false
 [diff]
@@ -124,7 +124,10 @@
   # http://gitfu.wordpress.com/2008/04/20/git-rerere-rereremember-what-you-did-last-time/
   enabled = true
 [user]
-	email = andy@nsnw.ca
-	name = Andy Smith
+	email = {{ .email }}
+	name = {{ .name }}
 [init]
 	defaultBranch = main
+
+[url "git@github.com:"]
+  insteadOf = https://github.com/
