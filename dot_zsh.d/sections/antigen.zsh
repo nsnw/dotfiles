@@ -8,15 +8,19 @@ source "${HOME}/.antigen/antigen.zsh"
 antigen use oh-my-zsh
 
 # Bundles from the default repo (robbyrussell's oh-my-zsh).
-# antigen bundle brew
 antigen bundle git
-# antigen bundle docker
 antigen bundle command-not-found
 antigen bundle zsh-users/zsh-completions
 antigen bundle zsh-users/zsh-autosuggestions
-antigen bundle ssh-agent
-# antigen bundle wfxr/forgit
+
+if [[ -z ${SSH_CLIENT} ]]; then
+  antigen bundle ssh-agent
+else
+  log_info "SSH connection detected, skipping antigen ssh-agent bundle..."
+fi
+
 antigen bundle Aloxaf/fzf-tab
+# antigen bundle wfxr/forgit
 # antigen bundle aws
 # antigen bundle yarn
 # antigen bundle cargo
