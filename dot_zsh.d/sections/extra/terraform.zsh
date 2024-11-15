@@ -1,12 +1,18 @@
 # Terraform
 
-alias tf='terraform'
-alias tfp='terraform plan'
-alias tfi='terraform init'
-alias tfg='terraform get'
-alias tfa='terraform apply'
-alias tff='terraform fmt'
-alias tfd='terraform apply -destroy'
+if [[ $(which tofu) ]]; then
+  TERRAFORM_BIN="tofu"
+else
+  TERRAFORM_BIN="terraform"
+fi
+
+alias tf="${TERRAFORM_BIN}"
+alias tfp="${TERRAFORM_BIN} plan"
+alias tfi="${TERRAFORM_BIN} init"
+alias tfg="${TERRAFORM_BIN} get"
+alias tfa="${TERRAFORM_BIN} apply"
+alias tff="${TERRAFORM_BIN} fmt"
+alias tfd="${TERRAFORM_BIN} apply -destroy"
 
 function _terraform_search_for_roles() {
   GIT_ROOT="$(git rev-parse --show-toplevel)"
