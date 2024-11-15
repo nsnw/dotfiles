@@ -31,6 +31,7 @@ function _ensure_vim_dependencies() {
   #_ensure_vim_plugin_installed https://github.com/tmhedberg/SimpylFold.git
   #_ensure_vim_plugin_installed https://github.com/ycm-core/YouCompleteMe.git
   #_ensure_vim_plugin_installed https://github.com/elzr/vim-json
+  _ensure_vim_plugin_installed https://github.com/hashivim/vim-terraform.git
 }
 
 _ensure_vim_dependencies
